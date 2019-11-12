@@ -64,9 +64,17 @@ let closest pos poslist =
   in
   aux pos xs x
   
-let rec remove x xs =
+let rec remove (x : 'a) (xs : 'a list) : 'a list =
   match xs with
     | [] -> []
     | h::t -> if (h = x) then t
               else h::(remove x t)
 
+let neo_run posi poslist =
+  let rec aux posi poslist =
+    match poslist with
+      | [] -> []
+      | x::xs -> let go = path_to posi x in
+                 (remove x (walk posi go))@(run x xs)
+  in
+  (aux posi poslist)
