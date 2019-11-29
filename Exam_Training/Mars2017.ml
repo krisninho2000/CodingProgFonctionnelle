@@ -47,6 +47,9 @@ let recette_avec rs iname =
   in
   aux rs iname
 
+let neo_recette_avec rs iname =
+  List.map (fun (a,b) -> a) (List.filter (fun (a,b) -> if ((List.exists (fun x -> if (x = iname) then true else false) b) = true) then true else false) rs) 
+
 let add z xs =
   if (List.exists (fun e -> if e = z then true else false) xs) = true then xs
   else xs@[z]
@@ -74,3 +77,14 @@ let tous_ingredients_terminale rs =
 let table_ingredients rs =
   let ings = tous_ingredients rs in
   List.map (fun a -> (a, recette_avec rs a)) ings
+
+let fonction1 xs m =
+  List.map (fun a -> a -. m) xs
+
+let fonction2 xs m1 m2 =
+  if (m2 < m1) then []
+  else
+    List.filter (fun a -> if ((a >= m1) && (a <= m2)) then true else false) xs
+
+let fonction3 xs =
+  List.fold_right (fun a b -> a *. a +. b) xs 0.
