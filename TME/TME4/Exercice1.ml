@@ -10,7 +10,6 @@ let rec taille (t : 'a btree) : (int) =
 let rec hauteur (t : 'a btree) : (int) =
   match t with
     | Empty -> 0
-    | Node(Empty, a, Empty) -> 1
     | Node(treeg, a, treed) -> 1 + (max (hauteur treeg) (hauteur treed))
 
 let rec list_by_depth (t : 'a btree) (n : int) : ('a list) =

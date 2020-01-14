@@ -6,11 +6,11 @@ let rec fact (n : int) : int =
 let () = assert ((fact 3) = 6)
 
 let fact_bis (n : int) : int =
-  let rec fact_aux (acc : int) =
-    if (acc = 0) then 1
-    else acc * (fact_aux (acc - 1))
+  let rec fact_aux (n : int) (acc : int) =
+    if (n = 0) then acc
+    else (fact_aux (n - 1) (acc * n))
   in
     if (n < 0) then raise (Invalid_argument "n is lower than 0")
-    else (fact_aux n)
+    else (fact_aux n 1)
 
 let () = assert ((fact_bis 3) = 6)
